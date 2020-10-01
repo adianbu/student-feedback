@@ -1,0 +1,15 @@
+.card {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__avatar {
+  width: 50px !important;
+  height: 50px !important;
+  margin: auto;
+}

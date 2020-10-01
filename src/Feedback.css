@@ -1,0 +1,10 @@
+.feedback {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback__titles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

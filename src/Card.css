@@ -6,6 +6,7 @@
   padding: 10px;
   align-items: center;
   justify-content: center;
+  border: solid rgb(226, 226, 226) 1px;
 }
 
 .card__avatar {

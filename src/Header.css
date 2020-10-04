@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: solid rgb(226, 226, 226) 1px;
+  background-color: #fff;
+}
+
+.header__button {
+  background-color: #fff;
+  border-color: none;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.header__link {
+  color: black;
+  text-decoration: none;
+}

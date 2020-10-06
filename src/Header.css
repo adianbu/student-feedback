@@ -4,7 +4,7 @@
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  border-bottom: solid rgb(226, 226, 226) 1px;
+  border-bottom: solid rgb(236, 236, 236) 1px;
   background-color: #fff;
 }
 
@@ -13,6 +13,7 @@
   border-color: none;
   height: 30px;
   border-radius: 5px;
+  border: solid 1.55px rgb(180, 180, 180);
 }
 
 .header__link {

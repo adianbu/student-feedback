@@ -10,4 +10,6 @@ const feedbackTitles = [
   "Knowledge of Subject",
 ];
 
-export default { list, feedbackTitles };
+const feedbackOpinions = ["Bad", "Average", "Good", "Excellent"];
+
+export default { list, feedbackTitles, feedbackOpinions };

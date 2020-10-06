@@ -19,9 +19,15 @@ function Header({ user }) {
       </Link>
 
       <button onClick={handleLogout} className="header__button">
-        <Link className="header__link" to="/login">
-          Log Out
-        </Link>
+        {user ? (
+          <Link className="header__link" to="/login">
+            Log Out
+          </Link>
+        ) : (
+          <Link className="header__link" to="/login">
+            Log In
+          </Link>
+        )}
       </button>
     </div>
   );

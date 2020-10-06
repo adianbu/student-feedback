@@ -1,36 +1,47 @@
 import React, { useState } from "react";
 import { Rating } from "@material-ui/lab";
+import { FormControl, NativeSelect } from "@material-ui/core";
 
 import data from "./config/data";
-import TrackTitle from "./TrackTitle";
 import "./Feedback.css";
 
 const Feedback = () => {
   const [title, setTitle] = useState("");
-  const [rating, setRating] = useState({ title: "", rating: 0 });
+  const [rating, setRating] = useState([{ title: "", rating: 0 }]);
 
   const ratingChange = (event, value) => {
-    setRating({ ...rating, rating: value });
+    setRating([...rating, { rating: value }]);
+  };
+
+  const handleChange = (input, title) => {
+    setRating([...rating, { title: title, rating: input }]);
   };
 
   const divChange = (title) => {
-    setRating({ ...rating, title: title });
+    setRating([...rating, { title: title }]);
   };
 
   return (
     <div className="feedback">
       {data.feedbackTitles.map((title, index) => (
-        <>
-          <div className="feedback__titles">
-            <p>{title}</p>
-
-            <Rating onChange={ratingChange} />
-            {/* <TrackTitle title={title} /> */}
-          </div>
-        </>
+        <div key={index} className="feedback__titles">
+          <p>{title}</p>
+          <FormControl className="">
+            <NativeSelect onChange={(e) => handleChange(e.target.value, title)}>
+              {data.feedbackOpinions.length
+                ? data.feedbackOpinions.map((name, i) => (
+                    <option key={i} value={name}>
+                      {name}
+                    </option>
+                  ))
+                : "Loading"}
+            </NativeSelect>
+          </FormControl>
+          {/* <Rating onChange={() => ratingChange} /> */}
+          {/* <TrackTitle title={title} /> */}
+        </div>
       ))}
       {console.log(rating)}
-      {/* <p>{rating}</p> */}
     </div>
   );
 };

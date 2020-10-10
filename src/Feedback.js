@@ -5,29 +5,17 @@ import { FormControl, NativeSelect } from "@material-ui/core";
 import data from "./config/data";
 import "./Feedback.css";
 
-const Feedback = () => {
-  const [title, setTitle] = useState("");
-  const [rating, setRating] = useState([{ title: "", rating: 0 }]);
-
-  const ratingChange = (event, value) => {
-    setRating([...rating, { rating: value }]);
-  };
-
-  const handleChange = (input, title) => {
-    setRating([...rating, { title: title, rating: input }]);
-  };
-
-  const divChange = (title) => {
-    setRating([...rating, { title: title }]);
-  };
-
+const Feedback = ({ name, handleChange }) => {
   return (
     <div className="feedback">
       {data.feedbackTitles.map((title, index) => (
         <div key={index} className="feedback__titles">
           <p>{title}</p>
           <FormControl className="">
-            <NativeSelect onChange={(e) => handleChange(e.target.value, title)}>
+            <NativeSelect
+              onChange={(e) => handleChange(e.target.value, title, name)}
+            >
+              <option value="">None</option>
               {data.feedbackOpinions.length
                 ? data.feedbackOpinions.map((name, i) => (
                     <option key={i} value={name}>
@@ -41,7 +29,6 @@ const Feedback = () => {
           {/* <TrackTitle title={title} /> */}
         </div>
       ))}
-      {console.log(rating)}
     </div>
   );
 };

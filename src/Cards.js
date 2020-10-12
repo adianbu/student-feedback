@@ -18,39 +18,8 @@ function Cards({ user }) {
   //       created: paymentIntent.created,
   //     });
   // };
-  const [rating, setRating] = useState({ title: " ", rating: " " });
-  const [teacherName, setTeacherName] = useState(" ");
   const [onSubmit, setOnSubmit] = useState(false);
 
-  const handleChange = (input, title, name) => {
-    // setRating([...rating, { title: title, rating: input }]);
-    setRating({ title: title, rating: input });
-
-    setTeacherName(name);
-    console.log(teacherName);
-  };
-
-  useEffect(() => {
-    const storage = () => {
-      if (user && teacherName) {
-        db.collection("users")
-          .doc(user?.uid)
-          .collection("teachers")
-          .doc(teacherName)
-          .set(rating)
-          .then(() => {
-            console.log("Document successfully written!");
-          })
-          .catch((error) => {
-            console.error("Error writing document: ", error);
-          });
-      }
-    };
-
-    return () => {
-      storage();
-    };
-  }, [user, teacherName, rating]);
 
   return user ? (
     <>
@@ -61,15 +30,15 @@ function Cards({ user }) {
               <Card
                 key={index}
                 name={teacher.name}
-                handleChange={handleChange}
+                user={user}
+                // handleChange={handleChange}
               />
             ))}
           </div>
           <button className="cards__button" onClick={() => setOnSubmit(true)}>
             Submit
           </button>
-          {console.log(rating)}
-          {console.log(teacherName)}
+          
         </>
       ) : (
         <div className="cards__submit">You have successfully submitted</div>

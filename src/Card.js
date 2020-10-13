@@ -57,10 +57,8 @@ function Card({ src, teachName,user }) {
       <Feedback teachName={teachName} handleChange={handleChange} />
       {console.log(rating)}
           {console.log(teacherName)}
-          {rating!==[]?
-          <>
-          {dataStored}
-          </>:null}
+           {rating!==[]?dataStored():null}
+          
     </div>
   );
 }

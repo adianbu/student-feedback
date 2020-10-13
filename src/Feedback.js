@@ -5,7 +5,7 @@ import { FormControl, NativeSelect } from "@material-ui/core";
 import data from "./config/data";
 import "./Feedback.css";
 
-const Feedback = ({ name, handleChange }) => {
+const Feedback = ({ teachName, handleChange }) => {
   return (
     <div className="feedback">
       {data.feedbackTitles.map((title, index) => (
@@ -13,20 +13,18 @@ const Feedback = ({ name, handleChange }) => {
           <p>{title}</p>
           <FormControl className="">
             <NativeSelect
-              onChange={(e) => handleChange(e.target.value, title, name)}
+              onChange={(e) => handleChange(e.target.value, title, teachName)}
             >
-              <option value="">None</option>
               {data.feedbackOpinions.length
                 ? data.feedbackOpinions.map((name, i) => (
-                    <option key={i} value={name}>
+                    <option  key={i} value={name}>
                       {name}
                     </option>
+                    
                   ))
                 : "Loading"}
             </NativeSelect>
-          </FormControl>
-          {/* <Rating onChange={() => ratingChange} /> */}
-          {/* <TrackTitle title={title} /> */}
+          </FormControl>         
         </div>
       ))}
     </div>

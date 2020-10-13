@@ -4,7 +4,7 @@ import "./Card.css";
 import { Avatar } from "@material-ui/core";
 import { db } from "./firebase";
 
-function Card({ src, name,user }) {
+function Card({ src, teachName,user }) {
   const [rating, setRating] = useState([]);
   // { title: " ", rating: " " }
   const [teacherName, setTeacherName] = useState(" ");
@@ -14,24 +14,30 @@ function Card({ src, name,user }) {
     setRating([...rating,{ title: title, rating: input }]);
 
     setTeacherName(name);
+    {console.log(rating)}
+
     console.log(teacherName);
-    setTimeout(() => {
-      if (user && teacherName) {
-        db.collection("users")
-          .doc(user?.uid)
-          .collection("teachers")
-          .doc(teacherName)
-          .update('array',rating)
-          .then(() => {
-            console.log("Document successfully written!");
-          })
-          .catch((error) => {
-            console.error("Error writing document: ", error);
-          });
-      }
-    }, 1000);
+   
   };
 
+  const dataStored = () => {
+    
+    if (user && teacherName)
+    {
+      db.collection("users")
+      .doc(user?.uid)
+      .collection("teachers")
+      .doc(teacherName)
+      .update('array',rating)
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+      
+    }   
+  }
   // useEffect(() => {
   //   const storage = () => {
      
@@ -44,13 +50,17 @@ function Card({ src, name,user }) {
   return (
     <div className="card">
       {/* <img alt="" src={src} /> */}
-      <Avatar alt={name} className="card__avatar" src={src}>
-        {name[0]}
+      <Avatar alt={teachName} className="card__avatar" src={src}>
+        {teachName[0]}
       </Avatar>
-      <h2>{name}</h2>
-      <Feedback name={name} handleChange={handleChange} />
+      <h2>{teachName}</h2>
+      <Feedback teachName={teachName} handleChange={handleChange} />
       {console.log(rating)}
           {console.log(teacherName)}
+          {rating!==[]?
+          <>
+          {dataStored}
+          </>:null}
     </div>
   );
 }

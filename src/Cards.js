@@ -29,6 +29,7 @@ function Cards({ user }) {
             {data.list.map((teacher, index) => (
               <Card
                 key={index}
+                teachName={teacher.name}
                 name={teacher.name}
                 user={user}
                 // handleChange={handleChange}

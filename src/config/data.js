@@ -10,6 +10,7 @@ const feedbackTitles = [
   "Knowledge of Subject",
 ];
 
-const feedbackOpinions = ["Bad", "Average", "Good", "Excellent"];
+const feedbackOpinions = 
+["None","Bad", "Average", "Good", "Excellent"];
 
 export default { list, feedbackTitles, feedbackOpinions };

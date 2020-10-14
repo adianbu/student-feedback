@@ -5,14 +5,15 @@ import { Avatar } from "@material-ui/core";
 import { db } from "./firebase";
 
 function Card({ src, teachName,user }) {
-  const [rating, setRating] = useState([]);
+  const [rating, setRating] = useState({title: ' ', rating: ' '});
   // { title: " ", rating: " " }
+  const [ratings, setRatings] = useState({});
   const [teacherName, setTeacherName] = useState(" ");
 
   const handleChange = (input, title, name) => {
     // setRating([...rating, { title: title, rating: input }]);
-    setRating([...rating,{ title: title, rating: input }]);
-
+    setRating({ title: title, rating: input });
+setRatings({...ratings,rating})
     setTeacherName(name);
     {console.log(rating)}
 
@@ -28,7 +29,11 @@ function Card({ src, teachName,user }) {
       .doc(user?.uid)
       .collection("teachers")
       .doc(teacherName)
-      .update('array',rating)
+      .collection('rating')
+      .doc(rating?.title)
+      .set({
+        title:rating.rating
+      })
       .then(() => {
         console.log("Document successfully written!");
       })
